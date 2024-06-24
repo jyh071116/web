@@ -44,8 +44,14 @@ const writePost = () => {
   const tags = Array.from(document.getElementsByClassName("tag")).map(
     (tag) => tag.textContent,
   );
-  if (!title.value) return alert("제목을 입력해주세요!");
-  if (!content.value) return alert("내용을 입력해주세요!");
+  if (!title.value) {
+    alert("제목을 입력해주세요!");
+    return title.focus();
+  }
+  if (!content.value) {
+    alert("내용을 입력해주세요!");
+    return content.focus();
+  }
   setPost(title.value, tags, content.value);
   location.href = "index.html";
 };
