@@ -48,6 +48,10 @@ const writePost = () => {
     alert("제목을 입력해주세요!");
     return title.focus();
   }
+  if (title.value.length > 20) {
+    alert("제목은 20자 이내로 입력해주세요!");
+    return title.focus();
+  }
   if (!content.value) {
     alert("내용을 입력해주세요!");
     return content.focus();
