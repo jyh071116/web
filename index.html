@@ -22,6 +22,7 @@
           class="search"
           placeholder="검색할 내용을 입력해주세요"
           oninput="handleSearch(event)"
+          tabindex="1"
         />
         <img src="images/searchicon.svg" class="searchicon" alt="검색아이콘" />
       </div>
@@ -32,7 +33,7 @@
           onclick="handleSearchBar(event)"
           alt="검색아이콘"
         />
-        <a class="write" href="/write.html">글쓰기</a>
+        <a class="write" title="글쓰기" href="/write.html">글쓰기</a>
       </div>
     </header>
     <section>
@@ -48,16 +49,16 @@
         if (!posts) localStorage.setItem("posts", JSON.stringify([]));
 
         posts.forEach((post) => {
-          gridbox.innerHTML += `<div class="postbox" onclick="location.href = 'detail.html?id=${
+          gridbox.innerHTML += `<a class="postbox" title="세부 게시글-${post.title}" href="detail.html?id=${
             post.id
-          }'">
+          }">
         <h3>${post.title}</h3>
         <p class="date">${post.date}</p>
         <p class="content">${post.content.replace("#", "")}</p>
         <div class="tagbox">
           ${post.tags.map((tag) => `<div class="tag">${tag}</div>`).join("")}
         </div>
-      </div>`;
+      </a>`;
         });
       });
     </script>
