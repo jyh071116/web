@@ -37,7 +37,7 @@
       </div>
     </header>
     <section>
-      <h1 class="title">제목</h1>
+      <h1 class="title"></h1>
       <div class="date"></div>
       <div class="tagbox"></div>
       <div id="preview"></div>
@@ -56,6 +56,9 @@
           breaks: true,
         });
         preview.innerHTML = marked.parse(post[0].content);
+
+        const title = document.querySelector(".title");
+        title.innerText = post[0].title;
 
         const tagbox = document.querySelector(".tagbox");
         post[0].tags.forEach((tag) => {
