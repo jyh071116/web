@@ -16,13 +16,15 @@
   </head>
   <body>
     <header>
-      <img class="logo" src="images/logo.svg" alt="로고" />
+      <a href="/index.html" title="블로그 메인화면" tabindex="1"
+        ><img class="logo" src="images/logo.svg" alt="로고"
+      /></a>
       <div class="searchbox">
         <input
           class="search"
           placeholder="검색할 내용을 입력해주세요"
           oninput="handleSearch(event)"
-          tabindex="1"
+          tabindex="2"
         />
         <img src="images/searchicon.svg" class="searchicon" alt="검색아이콘" />
       </div>
@@ -49,9 +51,9 @@
         if (!posts) localStorage.setItem("posts", JSON.stringify([]));
 
         posts.forEach((post) => {
-          gridbox.innerHTML += `<a class="postbox" title="세부 게시글-${post.title}" href="detail.html?id=${
-            post.id
-          }">
+          gridbox.innerHTML += `<a class="postbox" title="세부 게시글-${
+            post.title
+          }" href="detail.html?id=${post.id}">
         <h3>${post.title}</h3>
         <p class="date">${post.date}</p>
         <p class="content">${post.content.replace("#", "")}</p>
