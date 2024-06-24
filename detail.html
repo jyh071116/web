@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>세부 페이지</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.10/marked.min.js"></script>
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/detail.css" />
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="images/logo.svg" />
+      <div class="searchbox">
+        <input
+          class="search"
+          placeholder="검색할 내용을 입력해주세요"
+          oninput="handleSearch(event)"
+        />
+        <img src="images/searchicon.svg" class="searchicon" />
+      </div>
+      <div class="optionbox">
+        <img
+          class="searchicon2"
+          src="images/searchicon.svg"
+          onclick="handleSearchBar(event)"
+        />
+        <a class="write" href="/write.html">글쓰기</a>
+      </div>
+    </header>
+    <section>
+      <h1 class="title">제목</h1>
+      <div class="date"></div>
+      <div class="tagbox"></div>
+      <div id="preview"></div>
+    </section>
+    <script src="js/app.js"></script>
+    <script>
+      const param = new URLSearchParams(location.search);
+      const id = param.get("id");
+      const posts = getPosts();
+      const post = posts.filter((post) => post.id == id);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const preview = document.getElementById("preview");
+        marked.setOptions({
+          breaks: true,
+        });
+        preview.innerHTML = marked.parse(post[0].content);
+
+        const tagbox = document.querySelector(".tagbox");
+        post[0].tags.forEach((tag) => {
+          tagbox.innerHTML += `<div class="tag">${tag}</div>`;
+        });
+
+        const date = document.querySelector(".date");
+        date.innerText = post[0].date;
+      });
+    </script>
+  </body>
+</html>
